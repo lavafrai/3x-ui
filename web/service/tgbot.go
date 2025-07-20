@@ -2015,7 +2015,10 @@ func (t *Tgbot) UserLoginNotify(username string, password string, ip string, tim
 	msg += t.I18nBot("tgbot.messages.username", "Username=="+username)
 	msg += t.I18nBot("tgbot.messages.ip", "IP=="+ip)
 	msg += t.I18nBot("tgbot.messages.time", "Time=="+time)
-	t.SendMsgToTgbotAdmins(msg)
+
+	if status != LoginSuccess {
+		t.SendMsgToTgbotAdmins(msg)
+	}
 }
 
 func (t *Tgbot) getInboundUsages() string {
